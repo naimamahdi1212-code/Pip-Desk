@@ -1,11 +1,6 @@
 (function () {
   "use strict";
 
-  // ============================================================
-  // CONFIG — point this at your backend auth service.
-  // ============================================================
-  var AUTH_ENDPOINT = "/api/auth/login"; // TODO: replace with your real endpoint
-
   var form = document.getElementById("loginForm");
   var emailInput = document.getElementById("email");
   var passwordInput = document.getElementById("password");
@@ -99,55 +94,40 @@
       return;
     }
 
-    var payload = {
-      email: emailInput.value.trim(),
-      password: passwordInput.value,
-      remember: document.getElementById("remember").checked
-    };
+    var account = window.pipDeskAccount;
+    if (!account) {
+      setLoading(false);
+      showAlert("Login service isn't loaded. Refresh and try again.", "error");
+      return;
+    }
 
     setLoading(true);
 
-    // --------------------------------------------------------
-    // Replace this fetch with a call to your real auth service.
-    // Expected contract (adjust to match your backend):
-    //   POST AUTH_ENDPOINT
-    //   body: { email, password, remember }
-    //   200 -> { token: "...", user: { ... } }
-    //   401 -> { message: "Invalid email or password." }
-    // --------------------------------------------------------
-    fetch(AUTH_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    })
-      .then(function (response) {
-        return response.json().then(function (data) {
-          return { ok: response.ok, status: response.status, data: data };
-        });
-      })
-      .then(function (result) {
-        setLoading(false);
+    // Note: "remember me" isn't something Appwrite takes per-login —
+    // session length is configured project-wide in the Appwrite
+    // console under Auth > Security > Session length. The checkbox
+    // is left in place for later if you want to build custom logic
+    // around it, but it isn't sent anywhere right now.
 
-        if (result.ok) {
-          // TODO: store result.data.token (e.g. httpOnly cookie set by
-          // the server is safest) before redirecting.
-          showAlert("Logged in. Redirecting\u2026", "success");
-          window.location.href = "home.html";
-        } else {
-          var message =
-            (result.data && result.data.message) ||
-            "Invalid email or password.";
-          showAlert(message, "error");
-        }
+    // --------------------------------------------------------
+    // Appwrite email/password session.
+    // Docs: https://appwrite.io/docs/products/auth/email-password
+    // --------------------------------------------------------
+    account
+      .createEmailPasswordSession({
+        email: emailInput.value.trim(),
+        password: passwordInput.value
       })
-      .catch(function () {
+      .then(function () {
         setLoading(false);
-        // Network failure, backend not reachable, CORS issue, etc.
-        // Common while the backend isn't wired up yet.
-        showAlert(
-          "Couldn't reach the login service. Check your connection and try again.",
-          "error"
-        );
+        showAlert("Logged in. Redirecting\u2026", "success");
+        window.location.href = "home.html";
+      })
+      .catch(function (error) {
+        setLoading(false);
+        var message =
+          (error && error.message) || "Invalid email or password.";
+        showAlert(message, "error");
       });
   });
 })();

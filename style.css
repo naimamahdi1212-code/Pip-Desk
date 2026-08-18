@@ -454,6 +454,41 @@ button:focus-visible {
 }
 
 /* ============================================================
+   AUTH GATE — home.html stays hidden until guard.js confirms
+   an active Appwrite session, then removes this class.
+   ============================================================ */
+html.auth-checking body {
+  visibility: hidden;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.logout-link {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  background: none;
+  border: 1px solid var(--navy-line);
+  padding: 7px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.logout-link:hover {
+  color: var(--coral);
+  border-color: var(--coral-dim);
+}
+.logout-link:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 880px) {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="auth-checking">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,10 @@
       <span class="wordmark-mark" aria-hidden="true">¤</span>
       <span>Pip Desk</span>
     </a>
-    <span class="header-tag">FOREX BASICS, PLAINLY EXPLAINED</span>
+    <div class="header-right">
+      <span class="header-tag">FOREX BASICS, PLAINLY EXPLAINED</span>
+      <button type="button" id="logoutButton" class="logout-link">Log out</button>
+    </div>
   </div>
 </header>
 
@@ -300,6 +303,9 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/appwrite@26.2.0"></script>
+<script src="appwrite-client.js"></script>
+<script src="guard.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
