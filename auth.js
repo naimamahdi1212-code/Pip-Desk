@@ -125,6 +125,15 @@
       })
       .catch(function (error) {
         setLoading(false);
+
+        // If a session is already active (e.g. race with the
+        // session-check redirect), just send them on instead of
+        // showing a confusing error.
+        if (error && error.type === "user_session_already_exists") {
+          window.location.href = "home.html";
+          return;
+        }
+
         var message =
           (error && error.message) || "Invalid email or password.";
         showAlert(message, "error");
