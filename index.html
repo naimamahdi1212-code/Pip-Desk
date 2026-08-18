@@ -3,285 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pip Desk — Learn forex trading in plain language</title>
-<meta name="description" content="Pip Desk teaches beginners the basics of forex trading — pips, leverage, spread, and candlesticks — in plain language, with no unexplained jargon.">
+<title>Pip Desk — Log in</title>
+<meta name="description" content="Log in to your Pip Desk account to start learning forex basics.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="auth.css">
 </head>
-<body>
+<body class="auth-body">
 
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="wrap header-inner">
-    <div class="wordmark">
+    <a href="index.html" class="wordmark" aria-current="page" style="text-decoration:none;">
       <span class="wordmark-mark" aria-hidden="true">¤</span>
       <span>Pip Desk</span>
-    </div>
+    </a>
     <span class="header-tag">FOREX BASICS, PLAINLY EXPLAINED</span>
   </div>
 </header>
 
-<main id="main">
+<main id="main" class="auth-main">
+  <div class="auth-shell">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-inner">
-      <p class="eyebrow">A quiet desk for a loud market</p>
-      <h1 class="hero-title">
-        Learn how currency<br>
-        trading actually <span class="hl-word">works</span>.
-      </h1>
-      <p class="hero-sub">
-        Pip Desk explains the basics of forex — how prices move, how trades
-        are priced, and how to read a chart — in plain language, before
-        you risk a single cent.
+    <section class="auth-card" aria-labelledby="authTitle">
+      <p class="eyebrow">Welcome back</p>
+      <h1 id="authTitle" class="auth-title">Log in to Pip Desk</h1>
+      <p class="auth-sub">Pick up your lessons where you left off.</p>
+
+      <!-- Live region for auth feedback from the backend -->
+      <div id="authAlert" class="auth-alert" role="alert" hidden></div>
+
+      <form id="loginForm" class="auth-form" novalidate>
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="email"
+            required
+            aria-describedby="emailError"
+          >
+          <p class="field-error" id="emailError" hidden>Enter a valid email address.</p>
+        </div>
+
+        <div class="field">
+          <div class="field-label-row">
+            <label for="password">Password</label>
+            <a href="#" class="field-aux-link" id="forgotLink">Forgot password?</a>
+          </div>
+          <div class="password-wrap">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              autocomplete="current-password"
+              required
+              minlength="8"
+              aria-describedby="passwordError"
+            >
+            <button type="button" class="password-toggle" id="passwordToggle" aria-pressed="false">
+              <span id="passwordToggleLabel">Show</span>
+            </button>
+          </div>
+          <p class="field-error" id="passwordError" hidden>Password must be at least 8 characters.</p>
+        </div>
+
+        <div class="field-row">
+          <label class="checkbox-row">
+            <input type="checkbox" id="remember" name="remember">
+            <span>Keep me logged in</span>
+          </label>
+        </div>
+
+        <button type="submit" class="cta-button auth-submit" id="submitButton">
+          <span id="submitLabel">Log in</span>
+          <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+      </form>
+
+      <p class="auth-switch">
+        New to Pip Desk? <a href="#">Create an account</a>
       </p>
-      <a href="#concepts" class="cta-button">
-        Start learning
-        <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-    </div>
-  </section>
+    </section>
 
-  <!-- TICKER TAPE -->
-  <section class="ticker-section" aria-label="Sample currency pair prices">
-    <div class="ticker-mask">
-      <div class="ticker-track" id="tickerTrack">
-        <!-- duplicated in JS for seamless loop -->
-      </div>
-    </div>
-    <p class="ticker-caption">Illustrative sample prices — not real market data</p>
-  </section>
-
-  <!-- CORE CONCEPTS -->
-  <section class="concepts" id="concepts">
-    <div class="wrap">
-      <p class="section-eyebrow">Four words, defined</p>
-      <h2 class="section-title">The vocabulary you actually need</h2>
-      <p class="section-lede">
-        Forex talk sounds harder than it is. These four terms cover most of
-        what you'll run into in your first month — each with a real example
-        so it sticks.
-      </p>
-
-      <div class="concept-grid">
-
-        <article class="concept-card">
-          <p class="concept-term-label">TERM 01</p>
-          <h3 class="concept-term">Pip</h3>
-          <p class="concept-def">
-            The smallest standard price move for a currency pair — how
-            traders measure a change without arguing over decimal places.
-          </p>
-          <div class="concept-example">
-            <p class="example-label">EXAMPLE</p>
-            <p class="example-body">
-              <span class="mono">EUR/USD</span> moves from
-              <span class="mono price-neutral">1.0842</span> to
-              <span class="mono price-up">1.0843</span> — that's a
-              one‑pip move.
-            </p>
-          </div>
-        </article>
-
-        <article class="concept-card">
-          <p class="concept-term-label">TERM 02</p>
-          <h3 class="concept-term">Leverage</h3>
-          <p class="concept-def">
-            Borrowed buying power that lets a small deposit control a much
-            larger position. It scales your gains — and your losses — the
-            same way.
-          </p>
-          <div class="concept-example">
-            <p class="example-label">EXAMPLE</p>
-            <p class="example-body">
-              With <span class="mono">10:1</span> leverage,
-              <span class="mono">$500</span> controls a
-              <span class="mono">$5,000</span> position. A 2% move is
-              a 20% swing on your money.
-            </p>
-          </div>
-        </article>
-
-        <article class="concept-card">
-          <p class="concept-term-label">TERM 03</p>
-          <h3 class="concept-term">Spread</h3>
-          <p class="concept-def">
-            The gap between the price you can sell at (bid) and the price
-            you can buy at (ask). It's the built-in cost of placing a trade.
-          </p>
-          <div class="concept-example">
-            <p class="example-label">EXAMPLE</p>
-            <p class="example-body">
-              <span class="mono">GBP/USD</span> bid
-              <span class="mono price-down">1.2650</span>, ask
-              <span class="mono price-up">1.2653</span> — a 3‑pip
-              spread, paid just by entering.
-            </p>
-          </div>
-        </article>
-
-        <article class="concept-card">
-          <p class="concept-term-label">TERM 04</p>
-          <h3 class="concept-term">Candlestick</h3>
-          <p class="concept-def">
-            A single bar showing a pair's opening price, closing price, and
-            the highest and lowest points it touched in one time window.
-          </p>
-          <div class="concept-example">
-            <p class="example-label">EXAMPLE</p>
-            <p class="example-body">
-              One <span class="price-up">mint‑green</span> hourly candle
-              means the price finished that hour higher than it started.
-            </p>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- READ A CANDLESTICK -->
-  <section class="candle-section" id="candlesticks">
-    <div class="wrap">
-      <p class="section-eyebrow">Chart reading, slowed down</p>
-      <h2 class="section-title">How to read a candlestick</h2>
-      <p class="section-lede">
-        Every candle tells you four numbers at a glance. Colour tells you
-        which direction the price travelled — the shape tells you how far.
-      </p>
-
-      <div class="candle-diagram-wrap">
-        <svg viewBox="0 0 720 440" class="candle-svg" role="img" aria-labelledby="candleTitle candleDesc">
-          <title id="candleTitle">Diagram comparing a bullish and a bearish candlestick</title>
-          <desc id="candleDesc">
-            Two annotated candlesticks side by side. The left, mint-green
-            candle is bullish: its close is above its open, meaning price
-            rose. The right, coral candle is bearish: its close is below
-            its open, meaning price fell. Both show a wick above the body
-            marking the period's high and a wick below marking the low.
-          </desc>
-
-          <!-- baseline grid lines -->
-          <g class="grid-lines" stroke="#2A2E4A" stroke-width="1">
-            <line x1="40" y1="60"  x2="680" y2="60"></line>
-            <line x1="40" y1="150" x2="680" y2="150"></line>
-            <line x1="40" y1="240" x2="680" y2="240"></line>
-            <line x1="40" y1="330" x2="680" y2="330"></line>
-            <line x1="40" y1="380" x2="680" y2="380"></line>
-          </g>
-
-          <!-- BULLISH CANDLE (left) -->
-          <g class="candle-group">
-            <!-- upper wick: high to top of body -->
-            <line x1="215" y1="90" x2="215" y2="150" stroke="#4FD1AE" stroke-width="3" stroke-linecap="round"></line>
-            <!-- lower wick: bottom of body to low -->
-            <line x1="215" y1="300" x2="215" y2="350" stroke="#4FD1AE" stroke-width="3" stroke-linecap="round"></line>
-            <!-- body: open (bottom) to close (top) -->
-            <rect x="175" y="150" width="80" height="150" rx="4" fill="#4FD1AE" stroke="#8FEDD3" stroke-width="1.5"></rect>
-
-            <!-- labels -->
-            <text x="215" y="78" text-anchor="middle" class="candle-label">HIGH</text>
-            <line x1="255" y1="150" x2="330" y2="150" stroke="#6B7093" stroke-width="1" stroke-dasharray="3 3"></line>
-            <text x="335" y="154" class="candle-label label-left">CLOSE (top of body)</text>
-
-            <line x1="255" y1="300" x2="330" y2="300" stroke="#6B7093" stroke-width="1" stroke-dasharray="3 3"></line>
-            <text x="335" y="304" class="candle-label label-left">OPEN (bottom of body)</text>
-
-            <text x="215" y="370" text-anchor="middle" class="candle-label">LOW</text>
-
-            <text x="215" y="410" text-anchor="middle" class="candle-tag candle-tag-up">BULLISH — closed higher</text>
-          </g>
-
-          <!-- BEARISH CANDLE (right) -->
-          <g class="candle-group">
-            <line x1="505" y1="90" x2="505" y2="150" stroke="#E8735F" stroke-width="3" stroke-linecap="round"></line>
-            <line x1="505" y1="300" x2="505" y2="350" stroke="#E8735F" stroke-width="3" stroke-linecap="round"></line>
-            <rect x="465" y="150" width="80" height="150" rx="4" fill="#E8735F" stroke="#F3A594" stroke-width="1.5"></rect>
-
-            <text x="505" y="78" text-anchor="middle" class="candle-label">HIGH</text>
-            <line x1="465" y1="150" x2="390" y2="150" stroke="#6B7093" stroke-width="1" stroke-dasharray="3 3"></line>
-            <text x="385" y="154" class="candle-label label-right">OPEN (top of body)</text>
-
-            <line x1="465" y1="300" x2="390" y2="300" stroke="#6B7093" stroke-width="1" stroke-dasharray="3 3"></line>
-            <text x="385" y="304" class="candle-label label-right">CLOSE (bottom of body)</text>
-
-            <text x="505" y="370" text-anchor="middle" class="candle-label">LOW</text>
-
-            <text x="505" y="410" text-anchor="middle" class="candle-tag candle-tag-down">BEARISH — closed lower</text>
-          </g>
-        </svg>
-
-        <dl class="candle-key">
-          <div class="candle-key-item">
-            <dt class="mono">Body</dt>
-            <dd>The thick block. Its edges mark the open and close prices for that period.</dd>
-          </div>
-          <div class="candle-key-item">
-            <dt class="mono">Wick</dt>
-            <dd>The thin lines above and below the body. They mark the highest and lowest prices reached.</dd>
-          </div>
-          <div class="candle-key-item">
-            <dt class="mono">Open</dt>
-            <dd>The price at the very start of that time period.</dd>
-          </div>
-          <div class="candle-key-item">
-            <dt class="mono">Close</dt>
-            <dd>The price at the very end of that time period.</dd>
-          </div>
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  <!-- LEARNING PATH -->
-  <section class="path-section" id="path">
-    <div class="wrap">
-      <p class="section-eyebrow">Your first month</p>
-      <h2 class="section-title">A learning path, in order</h2>
-      <p class="section-lede">
-        This sequence matters — each step gives you something the next one
-        depends on. Don't skip to step three.
-      </p>
-
-      <ol class="path-list">
-        <li class="path-step">
-          <span class="path-number mono">01</span>
-          <div class="path-content">
-            <h3>Learn the vocabulary first</h3>
-            <p>Get comfortable with pip, spread, leverage, and lot size before you open a live chart. Half of trading confusion is just unfamiliar words.</p>
-          </div>
-        </li>
-        <li class="path-step">
-          <span class="path-number mono">02</span>
-          <div class="path-content">
-            <h3>Practice reading candlestick charts</h3>
-            <p>Pull up a free chart and spot the open, close, high, and low on real candles. Do this until it's boring — that's when it's useful.</p>
-          </div>
-        </li>
-        <li class="path-step">
-          <span class="path-number mono">03</span>
-          <div class="path-content">
-            <h3>Place trades on a demo account</h3>
-            <p>Most brokers offer a free demo account funded with fake money. Use it to learn order types and platform mechanics with nothing at risk.</p>
-          </div>
-        </li>
-        <li class="path-step">
-          <span class="path-number mono">04</span>
-          <div class="path-content">
-            <h3>Write down a simple risk rule</h3>
-            <p>Decide, in writing, the maximum you're willing to risk on any one trade — before you ever fund a real account. This one habit outlasts every strategy.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </section>
-
+  </div>
 </main>
 
 <footer class="site-footer">
@@ -293,13 +106,11 @@
     <p class="disclaimer">
       Pip Desk is an educational resource only. Nothing on this site is
       financial advice, and none of it should be read as a recommendation
-      to buy, sell, or trade any currency. Trading foreign exchange carries
-      a real risk of loss. Practice on a demo account before you ever risk
-      real money, and consider speaking with a licensed financial adviser.
+      to buy, sell, or trade any currency.
     </p>
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="auth.js"></script>
 </body>
 </html>

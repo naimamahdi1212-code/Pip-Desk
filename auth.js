@@ -130,9 +130,9 @@
 
         if (result.ok) {
           // TODO: store result.data.token (e.g. httpOnly cookie set by
-          // the server is safest) and redirect to the logged-in area.
+          // the server is safest) before redirecting.
           showAlert("Logged in. Redirecting\u2026", "success");
-          // window.location.href = "/dashboard";
+          window.location.href = "home.html";
         } else {
           var message =
             (result.data && result.data.message) ||
