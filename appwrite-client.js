@@ -13,8 +13,8 @@
   // Fill these in once the database, collections, and team exist
   // in the Appwrite console (see the setup steps).
   // ============================================================
-  window.PIPDESK_DATABASE_ID = "<YOUR_DATABASE_ID_HERE>";
-  window.PIPDESK_LESSONS_COLLECTION_ID = "<YOUR_LESSONS_COLLECTION_ID_HERE>";
+  window.PIPDESK_DATABASE_ID = "lessons_collection_";
+  window.PIPDESK_LESSONS_COLLECTION_ID = "lessons_collection_";
   window.PIPDESK_PROGRESS_COLLECTION_ID = "<YOUR_PROGRESS_COLLECTION_ID_HERE>";
   window.PIPDESK_ADMIN_TEAM_ID = "<YOUR_ADMIN_TEAM_ID_HERE>";
 
