@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" class="auth-checking">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson — Naima's Academy</title>
+<meta name="description" content="A forex basics lesson from Naima's Academy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="home.html" class="wordmark" style="text-decoration:none;">
+      <span class="wordmark-mark" aria-hidden="true">¤</span>
+      <span>Naima's Academy</span>
+    </a>
+    <div class="header-right">
+      <span class="header-tag">FOREX BASICS, PLAINLY EXPLAINED</span>
+      <button type="button" id="logoutButton" class="logout-link">Log out</button>
+    </div>
+  </div>
+</header>
+
+<nav class="site-nav" aria-label="Site">
+  <div class="wrap site-nav-inner">
+    <a href="home.html" class="nav-link">Home</a>
+    <a href="dashboard.html" class="nav-link">Dashboard</a>
+    <a href="lessons.html" class="nav-link is-active">Lessons</a>
+  </div>
+</nav>
+
+<main id="main">
+  <section class="lesson-page-section">
+    <div class="wrap wrap-narrow">
+
+      <a href="lessons.html" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to lessons
+      </a>
+
+      <div id="lessonContent">
+        <p class="lesson-loading mono">Loading lesson…</p>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <span class="wordmark-mark" aria-hidden="true">¤</span>
+      <span>Naima's Academy</span>
+    </div>
+    <p class="disclaimer">
+      Naima's Academy is an educational resource only. Nothing on this site is
+      financial advice, and none of it should be read as a recommendation
+      to buy, sell, or trade any currency.
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/appwrite@26.2.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+<script src="appwrite-client.js"></script>
+<script src="guard.js"></script>
+<script src="markdown-render.js"></script>
+<script src="lesson.js"></script>
+</body>
+</html>

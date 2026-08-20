@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" class="auth-checking">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Naima's Academy</title>
+<meta name="description" content="Manage lessons for Naima's Academy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="auth.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="home.html" class="wordmark" style="text-decoration:none;">
+      <span class="wordmark-mark" aria-hidden="true">¤</span>
+      <span>Naima's Academy</span>
+    </a>
+    <div class="header-right">
+      <span class="header-tag">ADMIN</span>
+      <button type="button" id="logoutButton" class="logout-link">Log out</button>
+    </div>
+  </div>
+</header>
+
+<nav class="site-nav" aria-label="Site">
+  <div class="wrap site-nav-inner">
+    <a href="home.html" class="nav-link">Home</a>
+    <a href="dashboard.html" class="nav-link">Dashboard</a>
+    <a href="lessons.html" class="nav-link">Lessons</a>
+    <a href="admin.html" class="nav-link is-active">Admin</a>
+  </div>
+</nav>
+
+<main id="main">
+  <section class="admin-section">
+    <div class="wrap">
+      <p class="section-eyebrow">Lesson management</p>
+      <h1 class="section-title">Manage lessons</h1>
+      <p class="section-lede">
+        Add new lessons, edit existing ones, or remove them. Changes show
+        up on the Lessons page immediately.
+      </p>
+
+      <div id="adminAlert" class="auth-alert" role="alert" hidden></div>
+
+      <div class="admin-layout">
+
+        <form id="lessonForm" class="admin-form" novalidate>
+          <input type="hidden" id="documentId" value="">
+
+          <div class="field">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required>
+          </div>
+
+          <div class="field">
+            <label for="slug">Slug (used in the URL)</label>
+            <input type="text" id="slug" name="slug" required pattern="[a-z0-9-]+"
+                   placeholder="what-is-forex-trading">
+          </div>
+
+          <div class="field">
+            <label for="summary">Summary (shown on the tile)</label>
+            <input type="text" id="summary" name="summary" required maxlength="150">
+          </div>
+
+          <div class="field">
+            <label for="image">Image filename (in your images/ folder)</label>
+            <input type="text" id="image" name="image" placeholder="lesson-01.jpg">
+          </div>
+
+          <div class="field-row-split">
+            <div class="field">
+              <label for="order">Order</label>
+              <input type="number" id="order" name="order" required min="1" step="1">
+            </div>
+            <div class="field">
+              <label class="checkbox-row" style="margin-top:30px;">
+                <input type="checkbox" id="published" name="published" checked>
+                <span>Published</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="body">Body (Markdown \u2014 headings, lists, **bold** all work)</label>
+            <textarea id="body" name="body" rows="12" required></textarea>
+          </div>
+
+          <div class="admin-form-actions">
+            <button type="submit" class="cta-button" id="saveButton">Save lesson</button>
+            <button type="button" class="logout-link" id="cancelEditButton" hidden>Cancel edit</button>
+          </div>
+        </form>
+
+        <div class="admin-list-panel">
+          <div class="admin-list-header">
+            <h2>Existing lessons</h2>
+            <button type="button" class="logout-link" id="seedButton">Seed 8 starter lessons</button>
+          </div>
+          <div id="lessonList">
+            <p class="lesson-loading mono">Loading…</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <span class="wordmark-mark" aria-hidden="true">¤</span>
+      <span>Naima's Academy</span>
+    </div>
+    <p class="disclaimer">
+      Naima's Academy is an educational resource only. Nothing on this site is
+      financial advice, and none of it should be read as a recommendation
+      to buy, sell, or trade any currency.
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/appwrite@26.2.0"></script>
+<script src="appwrite-client.js"></script>
+<script src="admin-guard.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
